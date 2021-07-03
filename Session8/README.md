@@ -1,6 +1,3 @@
-# Raghav Menon
-# raghav.menon@capgemini.com
-
 Changed the following in the tests
 
 README_CONTENT_CHECK_FOR = [

@@ -1,22 +1,3 @@
-Changed the following in the tests
-
-README_CONTENT_CHECK_FOR = [
-    "odd_it",
-    "authenticate",
-    "logger",
-    "timed",
-    "decorator_factory"
-]
- As we are only chceking for expalination of these functions
-
-and
-
-session4 to session8 in line 47 & in line 54 of test_session8.py
-
-and
-
-import re was added
-
 Decorators
 -----------
 
@@ -38,31 +19,31 @@ Write separate decorators that:
 ------------------------
 In odd_it function, we use a nested function where the inner function executes the decorated function only if the current second is odd. The statement
 
-# if datetime.now().second % 2 != 0:
+ if datetime.now().second % 2 != 0:
 
 checks whether the current second is odd. If odd the function is executed and the result is sent back. If the current second is even then 'None' is returned.
 This nested function called 'odd_it' can be used to decorate any function using @odd_it and then defining the function from the next line. When executed, the 
 function executes only during the odd seconds. In order to get the details of the function passed rather than the inner function we use
 
-# @wraps(fn)
+ @wraps(fn)
 
 2. log Function (logger):
 -------------------------
 Logger function is used to decorate any function and print out the details of the function. When a function is decorated with this the following details regarding
 the function are printed out:
 1. Function Name
-    # print("The function_name is: ", fn.__name__)
+     print("The function_name is: ", fn.__name__)
 2. Date and time when the function was called
-    # print(f"The function {fn.__name__} was called at:", datetime.now())
+     print(f"The function {fn.__name__} was called at:", datetime.now())
 3. Time required to execute the function. Here we first take the current time and then execute the function and then calculate the difference between the current 
    time and time stored
-    # start = perf_counter()
-    # result = fn(*args, **kwargs)
-    # print("Execution time:", perf_counter() - start)
+     start = perf_counter()
+     result = fn(*args, **kwargs)
+     print("Execution time:", perf_counter() - start)
 4. Doc string of the function
-   # print("Function description:", fn.__doc__) 
+    print("Function description:", fn.__doc__) 
 5. Details of the function arguments
-   # print("Function annotation:", fn.__annotations__)
+    print("Function annotation:", fn.__annotations__)
 
 Such a decorator can be used to decorate any functions whose details have to be logged while execution of the function.
 
@@ -81,11 +62,11 @@ In this 'timed' decorator, we sent the number of times the decorated function ha
 decorator. Whe the 'Timed' decorator, decorates a function, it returns the total and the average time taken to execute the function 'n'
 times. We embed the function between the start and the current time variables and go on accumulating the time using
 
-# total_elapsed += (perf_counter() - start)
+ total_elapsed += (perf_counter() - start)
 
 and after executing 'n' times we find the average using:
 
-# avg_elapsed = total_elapsed / n
+ avg_elapsed = total_elapsed / n
 
 5. Access Rights (decorator_factory):
 -------------------------------------
